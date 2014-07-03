@@ -1,0 +1,25 @@
+{
+  "name": "jsNotes",
+  "version": "0.0.3",
+  "description": "A cli note-taker for node.js",
+  "main": "index.js",
+  "dependencies": {
+    "chalk": "^0.4.0",
+    "moment": "^2.7.0"
+  },
+  "bin": {
+    "note": "./index.js"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.20.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "journal"
+  ],
+  "author": "Rocky Reed",
+  "license": "MIT"
+}
