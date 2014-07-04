@@ -1,6 +1,6 @@
 # node-notes
 
-A module for writing quick project notes in the cli.
+A module for writing quick node.js project notes using a cli.
 
 ### use
 

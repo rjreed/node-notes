@@ -1,8 +1,7 @@
 var cfg = require('./config');
-var fs = require('fs');
 var eol = require('os').EOL;
 var date = cfg.formatDate(new Date());
-var writer = fs.createWriteStream(cfg.filePath, { flags: 'a' });
+var writer = require('fs').createWriteStream(cfg.filePath, { flags: 'a' });
 var rli = require('readline').createInterface(process.stdin, process.stdout);
 
 console.log('Enter note:');
