@@ -1,14 +1,11 @@
+var cfg = require('./config');
 var fs = require('fs');
-var path = require('path');
-var chalk = require('chalk');
 var eol = require('os').EOL;
-var fileName = 'jsNotes.txt';
-var filePath = path.resolve(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], fileName);
-var date = require('moment')().format('lll');
-var writer = fs.createWriteStream(filePath, { flags: 'a' });
+var date = cfg.formatDate(new Date());
+var writer = fs.createWriteStream(cfg.filePath, { flags: 'a' });
 var rli = require('readline').createInterface(process.stdin, process.stdout);
 
-console.log(chalk.cyan('Enter new note:'));
+console.log('Enter note:');
 writer.write('> ' + date + eol);
 rli.prompt();
 
@@ -17,6 +14,6 @@ rli.on('line', function(line) {
   rli.prompt();
 }).on('close', function() {
   writer.write(eol);
-  console.log(chalk.cyan('Note saved: ') + chalk.cyan.bold('[' + date + ']'));
+  console.log('Note saved: [' + date + ']');
   process.exit(0);
 });
