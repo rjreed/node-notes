@@ -9,8 +9,8 @@ var date = cfg.formatDate(new Date());
 
 // readline interface
 var rli = readline.createInterface({
-	input: process.stdin, 
-	output: fs.createWriteStream(cfg.filePath, { flags: 'a' })
+  input: process.stdin,
+  output: fs.createWriteStream(cfg.filePath, { flags: 'a' })
 });
 
 // event listeners
