@@ -19,10 +19,10 @@ rli.on('line', function(line) {
 });
 process.on('SIGINT', function() {
   rli.output.write(eol);
-  process.stdin.write(eol + 'Note saved!' + eol);
+  process.stdout.write(eol + 'Note saved!' + eol);
   process.exit(0);
 });
 
 // initial writes
-process.stdin.write('Enter note:' + eol);
+process.stdout.write('Enter note:' + eol);
 rli.output.write('> ' + date + eol);
