@@ -1,18 +1,28 @@
-var cfg = require('./config');
+// imports
+var fs = require('fs');
+var readline = require('readline');
 var eol = require('os').EOL;
+var cfg = require('./config');
+
+// formatted date string
 var date = cfg.formatDate(new Date());
-var writer = require('fs').createWriteStream(cfg.filePath, { flags: 'a' });
-var rli = require('readline').createInterface(process.stdin, process.stdout);
 
-console.log('Enter note:');
-writer.write('> ' + date + eol);
-rli.prompt();
+// readline interface
+var rli = readline.createInterface({
+	input: process.stdin, 
+	output: fs.createWriteStream(cfg.filePath, { flags: 'a' })
+});
 
+// event listeners
 rli.on('line', function(line) {
-  writer.write(line + eol);
-  rli.prompt();
-}).on('close', function() {
-  writer.write(eol);
-  console.log('Note saved: [' + date + ']');
+  rli.output.write(String(line) + eol);
+});
+process.on('SIGINT', function() {
+  rli.output.write(eol);
+  process.stdin.write(eol + 'Note saved!' + eol);
   process.exit(0);
 });
+
+// initial writes
+process.stdin.write('Enter note:' + eol);
+rli.output.write('> ' + date + eol);
